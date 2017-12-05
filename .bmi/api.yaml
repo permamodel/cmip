@@ -1,0 +1,6 @@
+name: CMIPComponent
+language: python
+
+package: cmip.bmi_cmip
+class: BmiCMIPComponentMethod
+initialize_args: "sample_cmip.cfg"

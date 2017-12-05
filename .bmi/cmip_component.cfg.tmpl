@@ -1,0 +1,26 @@
+#===============================================================================
+# Config File for: CMIP_component method
+#===============================================================================
+# Input
+filename            | {filename}             | string   | name of this file
+run_description     | {run_description}      | string   | description of this configuration
+run_region          | {run_region}           | string   | general location of this domain
+# Model first, last, step [years]
+model_start_year    | {model_start_year}     | long     | first year of model run
+model_end_year      | {model_end_year}       | long     | last year of model run
+timestep            | {timestep}             | int      | model timestep [yr]
+# Data sources
+srcdata_dir         | {srcdata_dir}                     | string   | dir containing CMIP netcdf files
+filepattern         | {filepattern}                     | string   | pattern for CMIP nc filenames
+first_valid_year    | {first_valid_year}                | int      | first year for which data exists
+last_valid_year     | {last_valid_year}                 | int      | last year for which data exists
+# Grid variables are processed separately after all config variables have been read in
+# need to create np.float array of grids
+grid_type           | {grid_type}            | string   | form of the model grid
+grid_columns        | {grid_columns}         | int      | number of columns in model grid
+grid_rows           | {grid_rows}            | int      | number of columns in model grid
+#  with temperature as np.zeros((grid_columns, grid_rows), dtype=np.float)
+i_ul                | {i_ul}                 | int      | i-coord of upper left corner model domain
+j_ul                | {j_ul}                 | int      | j-coord of upper left corner model domain
+# timestep is converted to datetime.timedelta(days=timestep)
+# Output

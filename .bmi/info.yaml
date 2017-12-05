@@ -1,0 +1,9 @@
+author: J. Scott Stewart
+doi:
+email: james.stewart@colorado.edu
+license: GPL
+url: http://csdms.colorado.edu/wiki/Model_download_portal
+version: 0.1
+summary:
+  "The CMIP component provides BMI-mediated access to a netCDF
+  file containing the CMIP output files for global permafrost regions."

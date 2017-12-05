@@ -1,0 +1,108 @@
+filename:
+  description: Name of this file
+  value:
+    type: string
+    default: sample_cmip.cfg
+    units: '-'
+run_description:
+  description: Description of this configuration
+  value:
+    type: string
+    default: Global sample CMIP results
+    units: '-'
+run_region:
+  description: General location of this domain
+  value:
+    type: string
+    default: Global
+    units: '-'
+model_start_year:
+  description: Start year for retrieving data
+  value:
+    type: long
+    default: 1902
+    range:
+      min: 1901
+      max: 2099
+    units: yr
+model_end_year:
+  description: End year for retrieving data
+  value:
+    type: long
+    default: 1910
+    range:
+      min: 1901
+      max: 2100
+    units: yr
+timestep:
+  description: Model time step
+  value:
+    type: int
+    default: 1
+    units: yr
+srcdata_dir:
+  description: The directory where the CMIP .nc files are located
+  value:
+    type: string
+    default: /data/SiB_PCF85
+    units: '-'
+filepattern:
+  description: The pattern of filenames for CMIP .nc files
+  value:
+    type: string
+    default: SRCDIR/SiB_PCF85_data.t12.YEAR.nc
+    units: '-'
+first_valid_year:
+  description: The first year for which data exists
+  value:
+    type: long
+    default: 1901
+    range:
+      min: 1901
+      max: 2099
+    units: yr
+last_valid_year:
+  description: The last year for which data exists
+  value:
+    type: long
+    default: 2100
+    range:
+      min: 1901
+      max: 2100
+    units: yr
+grid_type:
+  description: Form of the model grid
+  value:
+    type: string
+    default: uniform_rectilinear
+    units: '-'
+grid_columns:
+  description: Number of columns in model grid
+  value:
+    type: int
+    default: 40
+    range:
+      min: 1
+      max: 140
+    units: '-'
+grid_rows:
+  description: Number of rows in model grid
+  value:
+    type: int
+    default: 20
+    range:
+      min: 1
+      max: 165
+    units: '-'
+i_ul:
+  description: Column offset from upper left model domain
+  value:
+    type: int
+    default: 50
+    units: '-'
+j_ul:
+  description: Row offset from upper left model domain
+  value:
+    type: int
+    default: 25
+    units: '-'

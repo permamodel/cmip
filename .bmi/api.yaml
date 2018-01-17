@@ -1,4 +1,4 @@
-name: CMIPComponent
+name: CMIP
 language: python
 
 package: cmip.bmi_cmip

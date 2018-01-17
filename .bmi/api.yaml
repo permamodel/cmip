@@ -3,4 +3,4 @@ language: python
 
 package: cmip.bmi_cmip
 class: BmiCMIPComponentMethod
-initialize_args: "sample_cmip.cfg"
+initialize_args: "cmip_component.cfg"

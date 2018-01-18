@@ -2,7 +2,7 @@ filename:
   description: Name of this file
   value:
     type: string
-    default: sample_cmip.cfg
+    default: cmip_component.cfg
     units: '-'
 run_description:
   description: Description of this configuration

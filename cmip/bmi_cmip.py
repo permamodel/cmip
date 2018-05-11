@@ -173,21 +173,23 @@ class BmiCMIPComponentMethod(object):
         self._values['atmosphere_bottom_air__temperature_year'] = \
                 self._model.T_air_annual_mean
 
-    def update_until(self, stop_date):
-        if stop_date < self._model._current_date:
+    def update_until(self, time):
+        stop_year = time + self._model._date_at_timestep0.year
+
+        if stop_year < self._model._current_date.year:
             print("Warning: update_until date--%d--is less than current\
-                  date--%d" % (stop_date, self._model._current_date))
+                  date--%d" % (stop_year, self._model._current_date.year))
             print("  no update run")
             return
 
-        if stop_date > self._model.last_date:
-            print("Warning: update_until date--%d" % stop_date)
-            print("  was greater than end_date--%d." % self._model.last_date)
-            print("  Setting stop_date to last_date")
-            stop_date = self._model.last_date
+        if stop_year > self._model.last_date.year:
+            print("Warning: update_until date--%d" % stop_year)
+            print("  was greater than end_date--%d." % self._model.last_date.year)
+            print("  Setting stop_year to last_date")
+            stop_year = self._model.last_date.year
 
-        # Run update() one timestep at a time until stop_date
-        while self._model._current_date < stop_date:
+        # Run update() one timestep at a time until stop_year
+        while self._model._current_date.year < stop_year:
             self.update()
 
     def finalize(self):

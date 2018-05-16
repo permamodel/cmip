@@ -4,11 +4,11 @@ use_setuptools()
 from setuptools import setup, find_packages
 
 
-setup(name='bmi_cmip',
-      version='0.1.0',
+setup(name='cmip',
+      version='0.1',
       author='J Scott Stewart',
       author_email='james.stewart@colorado.edu',
-      description='bmi_cmip',
+      description='cmip',
       long_description=open('README.md').read(),
       packages=find_packages(),
       install_requires=('numpy', 'nose', 'netcdf4', 'pyyaml',

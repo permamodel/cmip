@@ -7,7 +7,7 @@ files processed by Yassin at NSIDC
 """
 from  __future__ import print_function
 
-import calendar
+#import calendar
 import datetime as dt
 import os
 import yaml
@@ -70,6 +70,13 @@ class CMIPComponentMethod(object):
         # Month day for 'canonical' date-of-year
         self.month = 12
         self.day = 15
+
+        # Initialize these values to None
+        self.filepattern = None
+        self.srcdata_dir = None
+        self.T_air_jan = None
+        self.T_air_jul = None
+        self.temperature_year = None
 
 
     def get_current_ncdata_filename(self, thisdate, srcdir=None,
@@ -186,7 +193,7 @@ class CMIPComponentMethod(object):
         # routine for each type of grid
         try:
             exec_cmd = 'self.verify_config_for_{}_run(cfg_struct)'.format(
-                 cfg_struct['grid_type'])
+                cfg_struct['grid_type'])
             exec(exec_cmd)
         except:
             raise
@@ -341,7 +348,7 @@ class CMIPComponentMethod(object):
 
 
     def set_temperature_arrays(self, thisdate):
-        # Set the dat aarray sfrom the dataset arrays
+        # Set the data arrays from the dataset arrays
         self.T_air = self.get_temperature_month_year(thisdate.month,
                                                      thisdate.year)
         self.T_air_jan = self.get_temperature_month_year(1, thisdate.year)
@@ -451,8 +458,6 @@ class CMIPComponentMethod(object):
         thisdate = dt.date(year, month, 1)
         self.ensure_temperatures(thisdate)
 
-        filename = self.get_current_ncdata_filename(thisdate)
-
         if (thisdate < self._first_valid_date) or \
            (thisdate > self._last_valid_date):
             print('Warning: date has no associated datafile')
@@ -471,7 +476,9 @@ class CMIPComponentMethod(object):
             return
 
         # If the year is new, set the data from the file
-        filename = self.get_current_ncdata_filename(thisdate)
+        #filename = self.get_current_ncdata_filename(thisdate)
+        self.set_dataset_arrays(thisdate)
+
 
 
     def update_temperature_values(self):

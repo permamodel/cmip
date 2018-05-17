@@ -476,7 +476,6 @@ class CMIPComponentMethod(object):
             return
 
         # If the year is new, set the data from the file
-        #filename = self.get_current_ncdata_filename(thisdate)
         self.set_dataset_arrays(thisdate)
 
 

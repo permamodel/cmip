@@ -20,7 +20,7 @@ model_start_year:
   description: Start year for retrieving data
   value:
     type: long
-    default: 1902
+    default: 2000
     range:
       min: 1901
       max: 2099
@@ -29,7 +29,7 @@ model_end_year:
   description: End year for retrieving data
   value:
     type: long
-    default: 1910
+    default: 2050
     range:
       min: 1901
       max: 2100
@@ -80,7 +80,7 @@ grid_columns:
   description: Number of columns in model grid
   value:
     type: int
-    default: 40
+    default: 30
     range:
       min: 1
       max: 140
@@ -89,7 +89,7 @@ grid_rows:
   description: Number of rows in model grid
   value:
     type: int
-    default: 20
+    default: 23
     range:
       min: 1
       max: 165
@@ -98,11 +98,11 @@ i_ul:
   description: Column offset from upper left model domain
   value:
     type: int
-    default: 50
+    default: 25
     units: '-'
 j_ul:
   description: Row offset from upper left model domain
   value:
     type: int
-    default: 25
+    default: 37
     units: '-'

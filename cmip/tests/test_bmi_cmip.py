@@ -5,6 +5,7 @@ test_bmi_cmip.py
 
 import datetime
 import os
+import numpy as np
 
 from nose.tools import assert_equal, assert_not_equal
 
@@ -74,7 +75,7 @@ def test_update_changes_temperature():
 
     b0.initialize(cfg_file=default_config_filename)
 
-    index_flat = 50
+    index_flat = 350
     index2D = (10, 5)
 
     Tb0_2d_0 = b0.get_value(

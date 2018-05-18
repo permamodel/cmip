@@ -2,8 +2,12 @@ author: J. Scott Stewart
 doi:
 email: james.stewart@colorado.edu
 license: MIT
-url: http://csdms.colorado.edu/wiki/Model_download_portal
+url: https://csdms.colorado.edu/wiki/Model:CMIP
 version: 0.1
 summary:
-  "The CMIP component provides BMI-mediated access to a netCDF
-  file containing the CMIP output files for global permafrost regions."
+  CMIP is a data component processed from the Climate Model
+  Intercomparison Project 5, also called CMIP5. Data presented include
+  the mean annual temperature, mean July temperature, and mean January
+  temperature over the period 1902-2100. This dataset presents the
+  mean of the CMIP5 models. The original models that comprise CMIP5
+  were run for the representative concentration pathway RCP 8.5.

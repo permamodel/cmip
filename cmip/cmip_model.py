@@ -458,6 +458,10 @@ class CMIPComponentMethod(object):
         thisdate = dt.date(year, month, 1)
         self.ensure_temperatures(thisdate)
 
+        # Note: the netcdf file Temperature units are Kelvin, but this
+        #       component's units are Celsius.  Convert here.
+        self._temperature = np.subtract(self._temperature, 273.15)
+
         if (thisdate < self._first_valid_date) or \
            (thisdate > self._last_valid_date):
             print('Warning: date has no associated datafile')

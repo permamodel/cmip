@@ -376,10 +376,19 @@ class CMIPComponentMethod(object):
         # the best way to read from files that are several GB in size
         nc_temperature = self._temperature_nc_dataset.variables['TS']
 
-        # Sets the onthly array of gridded values
-        self._temperature = np.asarray(nc_temperature[
-            :, self._nc_j0:self._nc_j1:self._nc_jskip,
-            self._nc_i0:self._nc_i1:self._nc_iskip]).astype(np.float32)
+        # Sets the monthly array of gridded values
+        # Note: netcdf values are "flipped" in the y-axis, so they will be
+        # corrected here
+        temp_array = np.asarray(nc_temperature).astype(np.float32)
+        for month in np.arange(12):
+            temp_array[month] = np.flipud(temp_array[month])
+
+        temp_array.tofile('flipped_nc_temperature.dat')
+
+        self._temperature = temp_array[
+            :,
+            self._nc_j0:self._nc_j1:self._nc_jskip,
+            self._nc_i0:self._nc_i1:self._nc_iskip]
 
         self.temperature_year = thisdate.year
 

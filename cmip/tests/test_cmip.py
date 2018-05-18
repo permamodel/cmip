@@ -6,7 +6,7 @@ test_cmip.py
 import datetime
 import numpy as np
 from dateutil.relativedelta import relativedelta
-from nose.tools import (assert_almost_equal, assert_equal)
+from nose.tools import assert_almost_equal, assert_equal, assert_true
 import cmip
 import os
 
@@ -114,15 +114,15 @@ def test_specific_netcdf_values():
     t_idx = 0
     x_idx = 11
     y_idx = 0
-    #assert_almost_equal(ct._temperature[t_idx, y_idx, x_idx], 259.1304, places=2)
+    # Temperature units for this model are Celsius
     assert_almost_equal(
-        ct._temperature[t_idx, y_idx, x_idx], 260.1971, places=2)
+        ct._temperature[t_idx, y_idx, x_idx], 260.1971 - 273.15, places=2)
 
     t_idx = 0
     x_idx = 3
     y_idx = 18
     assert_almost_equal(
-        ct._temperature[t_idx, y_idx, x_idx], 252.3327, places=2)
+        ct._temperature[t_idx, y_idx, x_idx], 252.3327 - 273.15, places=2)
 
 
 def test_getting_monthly_annual_temp_values():
@@ -133,13 +133,15 @@ def test_getting_monthly_annual_temp_values():
 
     x_idx = 2
     y_idx = 1
-    assert_almost_equal(ct.T_air_annual_mean[y_idx, x_idx], 271.7334, places=2)
+    assert_almost_equal(ct.T_air_annual_mean[y_idx, x_idx],
+                        271.7334 - 273.15, places=2)
 
     t_idx = 6
     x_idx = 19
     y_idx = 3
     jul_temperatures = ct.get_temperature_month_year(7, 1902)
-    assert_almost_equal(jul_temperatures[y_idx, x_idx], 287.3322, places=2)
+    assert_almost_equal(jul_temperatures[y_idx, x_idx],
+                        287.3322 - 273.15, places=2)
 
 
 def test_can_increment_to_end_of_run():
@@ -202,3 +204,18 @@ def test_can_get_subarray_for_date():
     # This should be from the 'testing' or 'examples' or 'data' directory?
     expected_temperature_array = \
         np.fromfile(test_temp_field_file, dtype=np.float32)
+
+def test_temperature_units_are_Celsius():
+    """ test that temperature values are not Kelvin """
+    ct = cmip.cmip_model.CMIPComponentMethod()
+    ct.initialize_from_config_file()
+
+    x_idx = 2
+    y_idx = 1
+    assert_true(np.abs(ct.T_air_annual_mean[y_idx, x_idx]) < 50.0)
+
+    t_idx = 6
+    x_idx = 19
+    y_idx = 3
+    jul_temperatures = ct.get_temperature_month_year(7, 1902)
+    assert_true(np.abs(jul_temperatures[y_idx, x_idx]) < 50.0)
